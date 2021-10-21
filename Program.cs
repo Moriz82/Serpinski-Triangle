@@ -37,7 +37,7 @@ namespace Serpinski_Triangle
             Bitmap bm = new Bitmap(f1.Width/2, f1.Width/2);
             Bitmap map = new Bitmap(f1.Width,f1.Width);
             Graphics g = Graphics.FromImage(bm);
-            int iIterations = 6;
+            int iterations = 6;
             Color color = Color.White;
 
             for (int i = 0; i < bm.Height; i++)
@@ -48,15 +48,15 @@ namespace Serpinski_Triangle
                 }
             }
             
-            GenerateTriangle(g, iIterations, 1, (double)bm.Height - 2, (double)bm.Width / 2.0, 1, (double)bm.Width - 2, (double)bm.Height - 2, color);
+            GenerateTriangle(g, iterations, 1, (double)bm.Height - 2, (double)bm.Width / 2.0, 1, (double)bm.Width - 2, (double)bm.Height - 2, color);
             UpdateScreen(bm, map, pb, f1);
             f1.Height += 38;
             f1.Width += 15;
         }
-        static void GenerateTriangle(Graphics g, int iIterations, double x1, double y1, double x2, double y2, double x3, double y3, Color oColor)
+        static void GenerateTriangle(Graphics g, int iterations, double x1, double y1, double x2, double y2, double x3, double y3, Color color)
         {
            
-            if (iIterations > 1)
+            if (iterations > 1)
             {
                 double midx1 = (x1 + x2) / 2;
                 double midy1 = (y1 + y2) / 2;
@@ -64,19 +64,13 @@ namespace Serpinski_Triangle
                 double midy2 = (y2 + y3) / 2;
                 double midx3 = (x3 + x1) / 2;
                 double midy3 = (y3 + y1) / 2;
-                GenerateTriangle(g, iIterations - 1, x1, y1, midx1, midy1, midx3, midy3, oColor);
-                GenerateTriangle(g, iIterations - 1, midx1, midy1, x2, y2, midx2, midy2, oColor);
-                GenerateTriangle(g, iIterations - 1, midx3, midy3, midx2, midy2, x3, y3, oColor);
+                GenerateTriangle(g, iterations - 1, x1, y1, midx1, midy1, midx3, midy3, color);
+                GenerateTriangle(g, iterations - 1, midx1, midy1, x2, y2, midx2, midy2, color);
+                GenerateTriangle(g, iterations - 1, midx3, midy3, midx2, midy2, x3, y3, color);
             }
             else
             {
-                /*PointF[] points = new PointF[3];
-                points[0] = new PointF((float)x1, (float)y1);
-                points[1] = new PointF((float)x2, (float)y2);
-                points[2] = new PointF((float)x3, (float)y3);
-
-                g.FillPolygon(new SolidBrush(oColor), points);*/
-                Pen oPen = new Pen(new SolidBrush(oColor)); 
+                Pen oPen = new Pen(new SolidBrush(color)); 
                 g.DrawLine(oPen, (float)x1, (float)y1, (float)x2, (float)y2); 
                 g.DrawLine(oPen, (float)x2, (float)y2, (float)x3, (float)y3); 
                 g.DrawLine(oPen, (float)x3, (float)y3, (float)x1, (float)y1);
