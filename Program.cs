@@ -70,10 +70,10 @@ namespace Serpinski_Triangle
             }
             else
             {
-                Pen oPen = new Pen(new SolidBrush(color)); 
-                g.DrawLine(oPen, (float)x1, (float)y1, (float)x2, (float)y2); 
-                g.DrawLine(oPen, (float)x2, (float)y2, (float)x3, (float)y3); 
-                g.DrawLine(oPen, (float)x3, (float)y3, (float)x1, (float)y1);
+                Pen pen = new Pen(new SolidBrush(color)); 
+                g.DrawLine(pen, (float)x1, (float)y1, (float)x2, (float)y2); 
+                g.DrawLine(pen, (float)x2, (float)y2, (float)x3, (float)y3); 
+                g.DrawLine(pen, (float)x3, (float)y3, (float)x1, (float)y1);
             }
         }
         static void UpdateScreen(Bitmap matrix, Bitmap map, PictureBox box, Form1 form1)
